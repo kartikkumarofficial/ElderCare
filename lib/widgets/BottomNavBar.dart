@@ -1,4 +1,5 @@
 import 'package:eldercare/Screens/Dashboard.dart';
+import 'package:eldercare/Screens/Location.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
@@ -11,7 +12,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   final List<Widget> _screens = [
     DashboardScreen(),
     Center(child: Text('Health Screen', style: TextStyle(fontSize: 20))),
-    Center(child: Text('Location Screen', style: TextStyle(fontSize: 20))),
+    LocationTrackingScreen(),
     Center(child: Text('More Options Screen', style: TextStyle(fontSize: 20))),
   ];
 

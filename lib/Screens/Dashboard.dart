@@ -112,7 +112,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // Today's Medications Section
+
               Row(
                 children: [
                   Text(
