@@ -1,11 +1,19 @@
 import 'package:flutter/material.dart';
-import 'package:eldercare/widgets/widgets.dart';
-import 'package:eldercare/widgets/BottomNavBar.dart';
 
-class DashboardScreen extends StatelessWidget {
+class DashboardScreen extends StatefulWidget {
+  @override
+  _DashboardScreenState createState() => _DashboardScreenState();
+}
+
+class _DashboardScreenState extends State<DashboardScreen> {
+  List<Map<String, String>> medications = [
+    {"name": "Lisinopril", "time": "8:00 AM - 10mg"},
+    {"name": "Metformin", "time": "2:00 PM - 500mg"},
+    {"name": "Simvastatin", "time": "8:00 PM - 20mg"},
+  ];
+
   @override
   Widget build(BuildContext context) {
-    // Get screen dimensions using MediaQuery
     final srcWidth = MediaQuery.of(context).size.width;
     final srcHeight = MediaQuery.of(context).size.height;
 
@@ -36,22 +44,18 @@ class DashboardScreen extends StatelessWidget {
                       const SizedBox(height: 4.0),
                       Text(
                         "Caregiver",
-                        style: TextStyle(fontSize: srcWidth * 0.035, color: Colors.grey[600]),
+                        style: TextStyle(
+                          fontSize: srcWidth * 0.035,
+                          color: Colors.grey[600],
+                        ),
                       ),
                     ],
                   ),
-                  // CircleAvatar(
-                  //   radius: srcWidth * 0.07,
-                  //   backgroundImage: AssetImage('assets/user_avatar.png'), // Replace with your image
-                  // ),
-                  Icon(Icons.notifications,
-                  size: srcWidth*0.08,),
+                  Icon(Icons.notifications, size: srcWidth * 0.08),
                 ],
-
               ),
               SizedBox(height: 16.0),
 
-              // Emergency SOS Button
               Center(
                 child: SizedBox(
                   width: srcWidth * 0.9,
@@ -75,7 +79,6 @@ class DashboardScreen extends StatelessWidget {
               ),
               const SizedBox(height: 16.0),
 
-              // Health Overview Section
               Text(
                 "Health Overview",
                 style: TextStyle(
@@ -116,13 +119,13 @@ class DashboardScreen extends StatelessWidget {
                 ),
                 elevation: 2.0,
                 child: Column(
-                  children: [
-                    medicationTile("Lisinopril", "10mg - 8:00 AM"),
-                    Divider(height: 1.0),
-                    medicationTile("Metformin", "500mg - 2:00 PM"),
-                    Divider(height: 1.0),
-                    medicationTile("Simvastatin", "20mg - 8:00 PM"),
-                  ],
+                  children: medications.map((medication) {
+                    return _medicationTile(
+                      context,
+                      medication["name"]!,
+                      medication["time"]!,
+                    );
+                  }).toList(),
                 ),
               ),
               const SizedBox(height: 16.0),
@@ -198,6 +201,37 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  Widget _medicationTile(BuildContext context, String name, String time) {
+    return GestureDetector(
+      onTap: () {
+        // Pass the selected medication to EditMedicationScreen
+        Navigator.push(
+          context,
+          MaterialPageRoute(
+            builder: (context) => EditMedicationScreen(name: name, time: time),
+          ),
+        ).then((updatedMedication) {
+          if (updatedMedication != null) {
+            setState(() {
+              // Update the medication in the list after editing
+              for (int i = 0; i < medications.length; i++) {
+                if (medications[i]["name"] == updatedMedication["name"]) {
+                  medications[i] = updatedMedication; // Update specific medication
+                  break; // Exit the loop once found
+                }
+              }
+            });
+          }
+        });
+      },
+      child: ListTile(
+        title: Text(name),
+        subtitle: Text(time),
+        trailing: Icon(Icons.edit, color: Colors.blue),
+      ),
+    );
+  }
+
   Widget _healthContainer(double srcWidth, String title, String value, IconData icon, Color iconColor) {
     return Container(
       width: (srcWidth - 48) / 2, // Adjust width for 2 items in a row
@@ -232,5 +266,67 @@ class DashboardScreen extends StatelessWidget {
     );
   }
 
+  // Dummy Appointment Tile
+  Widget appointmentTile(String title, String details) {
+    return ListTile(
+      title: Text(title),
+      subtitle: Text(details),
+    );
+  }
 
+  // Drawer for Notifications
+  void _openNotificationDrawer(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (BuildContext context) {
+        return ListView(
+          children: List.generate(10, (index) {
+            return ListTile(
+              title: Text("Notification ${index + 1}"),
+              subtitle: Text("This is a dummy notification."),
+            );
+          }),
+        );
+      },
+    );
+  }
+}
+
+// Dummy EditMedicationScreen
+class EditMedicationScreen extends StatelessWidget {
+  final String name;
+  final String time;
+
+  EditMedicationScreen({required this.name, required this.time});
+
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(title: Text("Edit Medication")),
+      body: Padding(
+        padding: const EdgeInsets.all(16.0),
+        child: Column(
+          children: [
+            Text("Edit the medication details for $name"),
+            TextField(
+              decoration: InputDecoration(labelText: "Medication Name"),
+              controller: TextEditingController(text: name),
+            ),
+            TextField(
+              decoration: InputDecoration(labelText: "Medication Time"),
+              controller: TextEditingController(text: time),
+            ),
+            SizedBox(height: 20.0),
+            ElevatedButton(
+              onPressed: () {
+                // Save the edited medication
+                Navigator.pop(context, {"name": name, "time": time});
+              },
+              child: Text("Save Changes"),
+            ),
+          ],
+        ),
+      ),
+    );
+  }
 }
