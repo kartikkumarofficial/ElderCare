@@ -1,5 +1,6 @@
 import 'package:flutter/material.dart';
 import 'package:eldercare/widgets/widgets.dart';
+import 'package:eldercare/widgets/BottomNavBar.dart';
 
 class DashboardScreen extends StatelessWidget {
   @override
