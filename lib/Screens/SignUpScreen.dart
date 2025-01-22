@@ -114,7 +114,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child: Image.asset(
-                                        "assets/caregiver_new-removebg-preview.png",
+                                        "assets/images/caregiver.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
@@ -141,7 +141,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                                         borderRadius: BorderRadius.circular(25),
                                       ),
                                       child: Image.asset(
-                                        "assets/careseeker-removebg-preview.png",
+                                        "assets/images/careseeker.png",
                                         fit: BoxFit.cover,
                                       ),
                                     ),
