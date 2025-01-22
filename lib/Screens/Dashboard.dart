@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:eldercare/widgets/widgets.dart';
 
 class DashboardScreen extends StatefulWidget {
   @override
@@ -12,6 +13,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
     {"name": "Simvastatin", "time": "8:00 PM - 20mg"},
   ];
 
+  final TextEditingController nameController = TextEditingController();
+  final TextEditingController timeController = TextEditingController();
+  final TextEditingController doseController = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     final srcWidth = MediaQuery.of(context).size.width;
@@ -19,6 +24,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
 
     return Scaffold(
       backgroundColor: Colors.grey[100],
+
       body: SingleChildScrollView(
         child: Padding(
           padding: const EdgeInsets.symmetric(horizontal: 16.0),
@@ -27,7 +33,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               SizedBox(height: srcHeight * 0.05),
 
-              // Welcome Header
+              // Welcome Header Row (Back to original)
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -56,6 +62,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               SizedBox(height: 16.0),
 
+              // Emergency Button
               Center(
                 child: SizedBox(
                   width: srcWidth * 0.9,
@@ -79,6 +86,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16.0),
 
+              // Health Overview Section
               Text(
                 "Health Overview",
                 style: TextStyle(
@@ -90,16 +98,16 @@ class _DashboardScreenState extends State<DashboardScreen> {
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _healthContainer(srcWidth, "Heart Rate", "75 BPM", Icons.favorite, Colors.red),
-                  _healthContainer(srcWidth, "Blood Pressure", "120/80", Icons.water, Colors.blue),
+                  healthContainer(srcWidth, "Heart Rate", "75 BPM", Icons.favorite, Colors.red),
+                  healthContainer(srcWidth, "Blood Pressure", "120/80", Icons.water, Colors.blue),
                 ],
               ),
               const SizedBox(height: 12.0),
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
-                  _healthContainer(srcWidth, "Blood Sugar", "95 mg/dL", Icons.bloodtype, Colors.orange),
-                  _healthContainer(srcWidth, "Steps", "2,450", Icons.directions_walk, Colors.green),
+                  healthContainer(srcWidth, "Blood Sugar", "95 mg/dL", Icons.bloodtype, Colors.orange),
+                  healthContainer(srcWidth, "Steps", "2,450", Icons.directions_walk, Colors.green),
                 ],
               ),
               const SizedBox(height: 16.0),
@@ -198,71 +206,73 @@ class _DashboardScreenState extends State<DashboardScreen> {
           ),
         ),
       ),
+      floatingActionButton: FloatingActionButton(
+        onPressed: () => _showAddMedicationBottomSheet(context),
+        child: Icon(Icons.add),
+        backgroundColor: Colors.white,
+      ),
     );
   }
 
+  // Medication Tile
   Widget _medicationTile(BuildContext context, String name, String time) {
-    return GestureDetector(
-      onTap: () {
-        // Pass the selected medication to EditMedicationScreen
-        Navigator.push(
-          context,
-          MaterialPageRoute(
-            builder: (context) => EditMedicationScreen(name: name, time: time),
-          ),
-        ).then((updatedMedication) {
-          if (updatedMedication != null) {
-            setState(() {
-              // Update the medication in the list after editing
-              for (int i = 0; i < medications.length; i++) {
-                if (medications[i]["name"] == updatedMedication["name"]) {
-                  medications[i] = updatedMedication; // Update specific medication
-                  break; // Exit the loop once found
-                }
-              }
-            });
-          }
-        });
-      },
-      child: ListTile(
-        title: Text(name),
-        subtitle: Text(time),
-        trailing: Icon(Icons.edit, color: Colors.blue),
-      ),
+    return ListTile(
+      title: Text(name),
+      subtitle: Text(time),
+      trailing: Icon(Icons.edit, color: Colors.blue),
     );
   }
 
-  Widget _healthContainer(double srcWidth, String title, String value, IconData icon, Color iconColor) {
-    return Container(
-      width: (srcWidth - 48) / 2, // Adjust width for 2 items in a row
-      padding: const EdgeInsets.all(16.0),
-      decoration: BoxDecoration(
-        color: Colors.white,
-        borderRadius: BorderRadius.circular(12.0),
-        boxShadow: [
-          BoxShadow(
-            color: Colors.grey.withOpacity(0.2),
-            spreadRadius: 1,
-            blurRadius: 5,
-            offset: Offset(0, 2),
+  // Show Bottom Sheet to add new medication
+  void _showAddMedicationBottomSheet(BuildContext context) {
+    showModalBottomSheet(
+      context: context,
+      builder: (context) {
+        return Padding(
+          padding: const EdgeInsets.all(16.0),
+          child: Column(
+            mainAxisSize: MainAxisSize.min,
+            children: [
+              Text("Add New Medication", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+              SizedBox(height: 16),
+              TextField(
+                controller: nameController,
+                decoration: InputDecoration(labelText: "Medication Name"),
+              ),
+              SizedBox(height: 8),
+              TextField(
+                controller: timeController,
+                decoration: InputDecoration(labelText: "Time (e.g., 8:00 AM)"),
+              ),
+              SizedBox(height: 8),
+              TextField(
+                controller: doseController,
+                decoration: InputDecoration(labelText: "Dose (e.g., 10mg)"),
+              ),
+              SizedBox(height: 20),
+              ElevatedButton(
+                onPressed: () {
+                  setState(() {
+                    medications.add({
+                      "name": nameController.text,
+                      "time": "${timeController.text} - ${doseController.text}",
+                    });
+                  });
+                  Navigator.pop(context);
+                  nameController.clear();
+                  timeController.clear();
+                  doseController.clear();
+                },
+                child: Text("Add Medication"),
+                style: ElevatedButton.styleFrom(
+                  // primary: Colors.blue,
+                  padding: EdgeInsets.symmetric(vertical: 12.0),
+                ),
+              ),
+            ],
           ),
-        ],
-      ),
-      child: Column(
-        children: [
-          Icon(icon, size: 30.0, color: iconColor),
-          const SizedBox(height: 8.0),
-          Text(
-            title,
-            style: TextStyle(fontSize: 12.0, color: Colors.grey[600]),
-          ),
-          const SizedBox(height: 4.0),
-          Text(
-            value,
-            style: TextStyle(fontWeight: FontWeight.bold),
-          ),
-        ],
-      ),
+        );
+      },
     );
   }
 
@@ -288,45 +298,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
           }),
         );
       },
-    );
-  }
-}
-
-// Dummy EditMedicationScreen
-class EditMedicationScreen extends StatelessWidget {
-  final String name;
-  final String time;
-
-  EditMedicationScreen({required this.name, required this.time});
-
-  @override
-  Widget build(BuildContext context) {
-    return Scaffold(
-      appBar: AppBar(title: Text("Edit Medication")),
-      body: Padding(
-        padding: const EdgeInsets.all(16.0),
-        child: Column(
-          children: [
-            Text("Edit the medication details for $name"),
-            TextField(
-              decoration: InputDecoration(labelText: "Medication Name"),
-              controller: TextEditingController(text: name),
-            ),
-            TextField(
-              decoration: InputDecoration(labelText: "Medication Time"),
-              controller: TextEditingController(text: time),
-            ),
-            SizedBox(height: 20.0),
-            ElevatedButton(
-              onPressed: () {
-                // Save the edited medication
-                Navigator.pop(context, {"name": name, "time": time});
-              },
-              child: Text("Save Changes"),
-            ),
-          ],
-        ),
-      ),
     );
   }
 }
