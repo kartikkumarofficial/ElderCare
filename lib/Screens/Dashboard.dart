@@ -207,7 +207,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
         ),
       ),
       floatingActionButton: FloatingActionButton(
-        onPressed: () => _showAddMedicationBottomSheet(context),
+        onPressed: () => _showAddMedicationDialog(context),
         child: Icon(Icons.add),
         backgroundColor: Colors.white,
       ),
@@ -223,53 +223,58 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // Show Bottom Sheet to add new medication
-  void _showAddMedicationBottomSheet(BuildContext context) {
-    showModalBottomSheet(
+  // Show Dialog to add new medication
+  void _showAddMedicationDialog(BuildContext context) {
+    showDialog(
       context: context,
-      builder: (context) {
-        return Padding(
-          padding: const EdgeInsets.all(16.0),
-          child: Column(
-            mainAxisSize: MainAxisSize.min,
-            children: [
-              Text("Add New Medication", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-              SizedBox(height: 16),
-              TextField(
-                controller: nameController,
-                decoration: InputDecoration(labelText: "Medication Name"),
-              ),
-              SizedBox(height: 8),
-              TextField(
-                controller: timeController,
-                decoration: InputDecoration(labelText: "Time (e.g., 8:00 AM)"),
-              ),
-              SizedBox(height: 8),
-              TextField(
-                controller: doseController,
-                decoration: InputDecoration(labelText: "Dose (e.g., 10mg)"),
-              ),
-              SizedBox(height: 20),
-              ElevatedButton(
-                onPressed: () {
-                  setState(() {
-                    medications.add({
-                      "name": nameController.text,
-                      "time": "${timeController.text} - ${doseController.text}",
-                    });
-                  });
-                  Navigator.pop(context);
-                  nameController.clear();
-                  timeController.clear();
-                  doseController.clear();
-                },
-                child: Text("Add Medication"),
-                style: ElevatedButton.styleFrom(
-                  // primary: Colors.blue,
-                  padding: EdgeInsets.symmetric(vertical: 12.0),
+      builder: (BuildContext context) {
+        return Dialog(
+          insetPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 100.0),
+          shape: RoundedRectangleBorder(
+            borderRadius: BorderRadius.circular(12.0),
+          ),
+          child: Padding(
+            padding: const EdgeInsets.all(16.0),
+            child: Column(
+              mainAxisSize: MainAxisSize.min,
+              children: [
+                Text("Add New Medication", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                SizedBox(height: 16),
+                TextField(
+                  controller: nameController,
+                  decoration: InputDecoration(labelText: "Medication Name"),
                 ),
-              ),
-            ],
+                SizedBox(height: 8),
+                TextField(
+                  controller: timeController,
+                  decoration: InputDecoration(labelText: "Time (e.g., 8:00 AM)"),
+                ),
+                SizedBox(height: 8),
+                TextField(
+                  controller: doseController,
+                  decoration: InputDecoration(labelText: "Dose (e.g., 10mg)"),
+                ),
+                SizedBox(height: 20),
+                ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      medications.add({
+                        "name": nameController.text,
+                        "time": "${timeController.text} - ${doseController.text}",
+                      });
+                    });
+                    Navigator.pop(context);
+                    nameController.clear();
+                    timeController.clear();
+                    doseController.clear();
+                  },
+                  child: Text("Add Medication"),
+                  style: ElevatedButton.styleFrom(
+                    padding: EdgeInsets.symmetric(vertical: 12.0),
+                  ),
+                ),
+              ],
+            ),
           ),
         );
       },
