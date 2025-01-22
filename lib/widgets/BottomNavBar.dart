@@ -1,4 +1,5 @@
 import 'package:eldercare/Screens/DashboardScreen.dart';
+import 'package:eldercare/Screens/HealthScreen.dart';
 import 'package:eldercare/Screens/LocationScreen.dart';
 import 'package:flutter/material.dart';
 
@@ -11,7 +12,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
   int _selectedIndex = 0;
   final List<Widget> _screens = [
     DashboardScreen(),
-    Center(child: Text('Health Screen', style: TextStyle(fontSize: 20))),
+    HealthScreen(),
     LocationTrackingScreen(),
     Center(child: Text('More Options Screen', style: TextStyle(fontSize: 20))),
   ];
