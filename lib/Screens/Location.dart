@@ -73,9 +73,9 @@ class LocationTrackingScreen extends StatelessWidget {
 
               // Map Placeholder Section
               Text(
-                "Care Receiver's Current Location",
+                "Current Location",
                 style: TextStyle(
-                  fontSize: srcWidth * 0.045,
+                  fontSize: srcWidth * 0.05,
                   fontWeight: FontWeight.bold,
                 ),
               ),
@@ -101,7 +101,7 @@ class LocationTrackingScreen extends StatelessWidget {
                       title: Text("Last updated: 5 mins ago"),
                       trailing: TextButton(
                         onPressed: () {},
-                        child: Text("Track Now"),
+                        child: Text("Track Now",),
                       ),
                     ),
                   ],
