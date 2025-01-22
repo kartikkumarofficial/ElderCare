@@ -1,5 +1,5 @@
-import 'package:eldercare/Screens/Dashboard.dart';
-import 'package:eldercare/Screens/Location.dart';
+import 'package:eldercare/Screens/DashboardScreen.dart';
+import 'package:eldercare/Screens/LocationScreen.dart';
 import 'package:flutter/material.dart';
 
 class BottomNavBar extends StatefulWidget {
