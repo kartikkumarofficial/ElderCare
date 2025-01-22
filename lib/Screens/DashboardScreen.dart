@@ -1,3 +1,4 @@
+import 'package:eldercare/Screens/EmergencyScreen.dart';
 import 'package:flutter/material.dart';
 import 'package:eldercare/widgets/widgets.dart';
 
@@ -67,7 +68,9 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 child: SizedBox(
                   width: srcWidth * 0.9,
                   child: ElevatedButton.icon(
-                    onPressed: () {},
+                    onPressed: () {
+                      Navigator.push(context, MaterialPageRoute(builder: (context) => EmergencyAlertScreen(),));
+                    },
                     icon: Icon(Icons.warning_amber_outlined, color: Colors.white),
                     label: Text(
                       "Emergency SOS",

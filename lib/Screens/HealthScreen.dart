@@ -105,9 +105,12 @@ class HealthScreen extends StatelessWidget {
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.add, color: Colors.white),
-                  label: Text(
-                    "Add Reminder",
-                    style: TextStyle(color: Colors.white),
+                  label: Padding(
+                    padding: const EdgeInsets.only(left: 5,right: 5),
+                    child: Text(
+                      "Add Reminder",
+                      style: TextStyle(color: Colors.white),
+                    ),
                   ),
                   style: ElevatedButton.styleFrom(
                     backgroundColor: Colors.blue,
