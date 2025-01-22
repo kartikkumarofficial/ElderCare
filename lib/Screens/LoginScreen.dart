@@ -1,6 +1,7 @@
 
 import 'package:eldercare/Screens/DashboardScreen.dart';
 import 'package:eldercare/Screens/SignUpScreen.dart';
+import 'package:eldercare/widgets/BottomNavBar.dart';
 import 'package:flutter/material.dart';
 
 class LoginScreen extends StatefulWidget {
@@ -33,7 +34,7 @@ class _LoginScreenState extends State<LoginScreen> {
         loading = false;
       });
       Navigator.push(
-          context, MaterialPageRoute(builder: (context) => DashboardScreen()));
+          context, MaterialPageRoute(builder: (context) => BottomNavBar()));
     });
   }
 
@@ -257,6 +258,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
+
                                 backgroundColor: Colors.blueAccent,
                                 foregroundColor: Colors.white,
                                 padding: EdgeInsets.symmetric(

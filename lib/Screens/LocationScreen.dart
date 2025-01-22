@@ -87,16 +87,7 @@ class LocationTrackingScreen extends StatelessWidget {
                 elevation: 2.0,
                 child: Column(
                   children: [
-                    Container(
-                      height: srcHeight * 0.3,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
-                        color: Colors.grey[300], // Placeholder for the map
-                      ),
-                      child: Center(
-                        child: ClipRRect(child: Image.asset('assets/images/map2.png')),
-                      ),
-                    ),
+                    ClipRRect(child: Image.asset('assets/images/map2.png')),
                     ListTile(
                       title: Text("Last updated: 5 mins ago"),
                       trailing: TextButton(
