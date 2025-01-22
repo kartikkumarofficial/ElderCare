@@ -289,8 +289,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // Drawer for Notifications
-  void _openNotificationDrawer(BuildContext context) {
+
+  void openNotificationDrawer(BuildContext context) {
     showModalBottomSheet(
       context: context,
       builder: (BuildContext context) {
