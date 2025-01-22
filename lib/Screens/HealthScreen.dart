@@ -106,7 +106,7 @@ class HealthScreen extends StatelessWidget {
                   onPressed: () {},
                   icon: Icon(Icons.add, color: Colors.white),
                   label: Text(
-                    "Add Medication",
+                    "Add Reminder",
                     style: TextStyle(color: Colors.white),
                   ),
                   style: ElevatedButton.styleFrom(

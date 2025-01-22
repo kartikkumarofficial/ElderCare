@@ -94,7 +94,7 @@ class LocationTrackingScreen extends StatelessWidget {
                         color: Colors.grey[300], // Placeholder for the map
                       ),
                       child: Center(
-                        child: Image.asset('assets/images/map2.png'),
+                        child: ClipRRect(child: Image.asset('assets/images/map2.png')),
                       ),
                     ),
                     ListTile(
