@@ -96,7 +96,7 @@ class NotificationScreen extends StatelessWidget {
     return Scaffold(
       appBar: AppBar(
         title: Text('Notifications'),
-        backgroundColor: Colors.blueAccent,
+        // backgroundColor: Colors.blueAccent,
       ),
       body: ListView.builder(
         itemCount: notifications.length,

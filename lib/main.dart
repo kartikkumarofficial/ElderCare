@@ -1,4 +1,5 @@
 import 'package:eldercare/Screens/DashboardScreen.dart';
+import 'package:eldercare/Screens/SignUpScreen.dart';
 import 'package:flutter/material.dart';
 import 'widgets/BottomNavBar.dart';
 
@@ -19,7 +20,7 @@ class MyApp extends StatelessWidget {
         colorScheme: ColorScheme.fromSeed(seedColor: Colors.deepPurple),
         useMaterial3: true,
       ),
-      home: BottomNavBar(),
+      home: SignUpScreen(),
     );
   }
 }

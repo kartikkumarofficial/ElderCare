@@ -1,4 +1,5 @@
 import 'package:eldercare/Screens/EmergencyScreen.dart';
+import 'package:eldercare/Screens/NotificationsScreens.dart';
 import 'package:flutter/material.dart';
 import 'package:eldercare/widgets/widgets.dart';
 
@@ -58,7 +59,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       ),
                     ],
                   ),
-                  Icon(Icons.notifications, size: srcWidth * 0.08),
+                  IconButton(onPressed: (){
+                    Navigator.push(context, MaterialPageRoute(builder: (context) => NotificationScreen(),));
+                  }, icon: Icon(Icons.notifications, size: srcWidth * 0.08),)
+                  
                 ],
               ),
               SizedBox(height: 16.0),
