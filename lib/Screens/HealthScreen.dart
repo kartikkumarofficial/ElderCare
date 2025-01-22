@@ -50,7 +50,7 @@ class HealthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center, // Center alignment
                 children: [
                   healthContainer(srcWidth, "Heart Rate", "75 BPM", Icons.favorite, Colors.red),
-                  SizedBox(width: srcWidth * 0.02), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
                   healthContainer(srcWidth, "Blood Pressure", "120/80", Icons.water, Colors.blue),
                 ],
               ),
@@ -59,7 +59,7 @@ class HealthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center, // Center alignment
                 children: [
                   healthContainer(srcWidth, "Blood Sugar", "95 mg/dL", Icons.bloodtype, Colors.orange),
-                  SizedBox(width: srcWidth * 0.02), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
                   healthContainer(srcWidth, "Steps", "2,450", Icons.directions_walk, Colors.green),
                 ],
               ),
@@ -68,7 +68,7 @@ class HealthScreen extends StatelessWidget {
                 mainAxisAlignment: MainAxisAlignment.center, // Center alignment
                 children: [
                   healthContainer(srcWidth, "Cholesterol", "180 mg/dL", Icons.monitor_heart, Colors.purple),
-                  SizedBox(width: srcWidth * 0.02), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
                   healthContainer(srcWidth, "Temperature", "98.6°F", Icons.thermostat, Colors.blueGrey),
                 ],
               ),
