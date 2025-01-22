@@ -113,12 +113,20 @@ class _DashboardScreenState extends State<DashboardScreen> {
               const SizedBox(height: 16.0),
 
               // Today's Medications Section
-              Text(
-                "Today's Medications",
-                style: TextStyle(
-                  fontSize: srcWidth * 0.045,
-                  fontWeight: FontWeight.bold,
-                ),
+              Row(
+                children: [
+                  Text(
+                    "Today's Medications",
+                    style: TextStyle(
+                      fontSize: srcWidth * 0.045,
+                      fontWeight: FontWeight.bold,
+                    ),
+                  ),
+                  Padding(
+                    padding:  EdgeInsets.only(left: srcWidth*0.35),
+                    child: IconButton(onPressed: (){}, icon: Icon(Icons.add)),
+                  )
+                ],
               ),
               const SizedBox(height: 12.0),
               Card(
@@ -138,7 +146,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // Current Location Section
               Text(
                 "Current Location",
                 style: TextStyle(
@@ -158,13 +165,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                       height: srcHeight * 0.2,
                       decoration: BoxDecoration(
                         borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
-                        color: Colors.grey[300], // Placeholder for the map
+                        color: Colors.grey[300],
                       ),
                       child: Center(
-                        child: Text(
-                          "Map Placeholder",
-                          style: TextStyle(color: Colors.grey[600]),
-                        ),
+                        child: Image.asset('assets/images/map.png',fit: BoxFit.contain,),
                       ),
                     ),
                     ListTile(
@@ -228,52 +232,59 @@ class _DashboardScreenState extends State<DashboardScreen> {
     showDialog(
       context: context,
       builder: (BuildContext context) {
-        return Dialog(
-          insetPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 100.0),
-          shape: RoundedRectangleBorder(
-            borderRadius: BorderRadius.circular(12.0),
-          ),
-          child: Padding(
-            padding: const EdgeInsets.all(16.0),
-            child: Column(
-              mainAxisSize: MainAxisSize.min,
-              children: [
-                Text("Add New Medication", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
-                SizedBox(height: 16),
-                TextField(
-                  controller: nameController,
-                  decoration: InputDecoration(labelText: "Medication Name"),
+        return SingleChildScrollView(
+          child: Container(
+            child: Dialog(
+              insetPadding: EdgeInsets.symmetric(horizontal: 16.0, vertical: 100.0),
+              shape: RoundedRectangleBorder(
+                borderRadius: BorderRadius.circular(12.0),
+              ),
+              child: Padding(
+                padding: const EdgeInsets.all(16.0),
+                child: Column(
+                  mainAxisSize: MainAxisSize.min,
+                  children: [
+                    Text("Add New Medication Reminder", style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold)),
+                    SizedBox(height: 16),
+                    TextField(
+                      controller: nameController,
+                      decoration: InputDecoration(labelText: "Medication Name"),
+                    ),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: timeController,
+                      decoration: InputDecoration(labelText: "Time (e.g., 8:00 AM)"),
+                    ),
+                    SizedBox(height: 8),
+                    TextField(
+                      controller: doseController,
+                      decoration: InputDecoration(labelText: "Dose (e.g., 10mg)"),
+                    ),
+                    SizedBox(height: 20),
+                    ElevatedButton(
+                      onPressed: () {
+                        setState(() {
+                          medications.add({
+                            "name": nameController.text,
+                            "time": "${timeController.text} - ${doseController.text}",
+                          });
+                        });
+                        Navigator.pop(context);
+                        nameController.clear();
+                        timeController.clear();
+                        doseController.clear();
+                      },
+                      child: Padding(
+                        padding: const EdgeInsets.only(left:5,right: 5),
+                        child: Text("Add Reminder"),
+                      ),
+                      style: ElevatedButton.styleFrom(
+                        padding: EdgeInsets.symmetric(vertical: 12.0),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(height: 8),
-                TextField(
-                  controller: timeController,
-                  decoration: InputDecoration(labelText: "Time (e.g., 8:00 AM)"),
-                ),
-                SizedBox(height: 8),
-                TextField(
-                  controller: doseController,
-                  decoration: InputDecoration(labelText: "Dose (e.g., 10mg)"),
-                ),
-                SizedBox(height: 20),
-                ElevatedButton(
-                  onPressed: () {
-                    setState(() {
-                      medications.add({
-                        "name": nameController.text,
-                        "time": "${timeController.text} - ${doseController.text}",
-                      });
-                    });
-                    Navigator.pop(context);
-                    nameController.clear();
-                    timeController.clear();
-                    doseController.clear();
-                  },
-                  child: Text("Add Medication"),
-                  style: ElevatedButton.styleFrom(
-                    padding: EdgeInsets.symmetric(vertical: 12.0),
-                  ),
-                ),
-              ],
+              ),
             ),
           ),
         );
