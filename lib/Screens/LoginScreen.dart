@@ -46,10 +46,10 @@ class _LoginScreenState extends State<LoginScreen> {
 
     return Scaffold(
       backgroundColor: Colors.white,
-      body: SingleChildScrollView(
-        child: Container(
-          width: srcwidth,
-          height: srcheight,
+      body: Container(
+        width: srcwidth,
+        height: srcheight,
+        child: SingleChildScrollView(
           child: Column(
             mainAxisAlignment: MainAxisAlignment.center,
             crossAxisAlignment: CrossAxisAlignment.center,
@@ -58,6 +58,7 @@ class _LoginScreenState extends State<LoginScreen> {
                 padding: EdgeInsets.symmetric(horizontal: srcwidth * 0.08),
                 child: Column(
                   children: [
+                    SizedBox(height: srcwidth*0.1,),
                     Text(
                       'Welcome to ElderCare+',
                       style: TextStyle(
@@ -258,7 +259,7 @@ class _LoginScreenState extends State<LoginScreen> {
                                 }
                               },
                               style: ElevatedButton.styleFrom(
-
+                
                                 backgroundColor: Colors.blueAccent,
                                 foregroundColor: Colors.white,
                                 padding: EdgeInsets.symmetric(
