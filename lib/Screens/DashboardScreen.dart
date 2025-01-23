@@ -130,7 +130,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(left: srcWidth*0.38),
+                    padding:  EdgeInsets.only(left: srcWidth*0.35),
                     child: IconButton(onPressed: (){
                       _showAddMedicationDialog(context);
                     }, icon: Icon(Icons.add)),
