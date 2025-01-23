@@ -17,7 +17,7 @@ class LocationTrackingScreen extends StatelessWidget {
 
               SizedBox(height: srcHeight * 0.05),
 
-              // Welcome Header Row
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
