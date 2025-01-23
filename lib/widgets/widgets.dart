@@ -21,7 +21,7 @@ import 'package:flutter/material.dart';
 
 Widget healthContainer(double srcWidth, String title, String value, IconData icon, Color iconColor) {
   return Container(
-    width: (srcWidth - 48) / 2, // Adjust width for 2 items in a row
+    width: (srcWidth - 48) / 2,
     padding: const EdgeInsets.all(16.0),
     decoration: BoxDecoration(
       color: Colors.white,
