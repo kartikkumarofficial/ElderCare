@@ -166,7 +166,7 @@ class _LoginScreenState extends State<LoginScreen> {
                         borderRadius: BorderRadius.circular(srcwidth * 0.05),
                       ),
                       child: Padding(
-                        padding: EdgeInsets.all(srcwidth * 0.05),
+                        padding: EdgeInsets.only(left:srcwidth * 0.05,right: srcwidth * 0.05,top: srcwidth * 0.05),
                         child: Column(
                           crossAxisAlignment: CrossAxisAlignment.center,
                           children: [
@@ -283,34 +283,37 @@ class _LoginScreenState extends State<LoginScreen> {
                                   : Text('Login'),
                             ),
                             SizedBox(height: srcheight * 0.03),
-                            Row(
-                              mainAxisAlignment: MainAxisAlignment.center,
-                              children: [
-                                Text(
-                                  "Don't have an account? ",
-                                  style: TextStyle(
-                                    color: Colors.black54,
-                                    fontSize: textScaleFactor * 14,
-                                  ),
-                                ),
-                                GestureDetector(
-                                  onTap: () {
-                                    Navigator.push(
-                                        context,
-                                        MaterialPageRoute(
-                                            builder: (context) =>
-                                                SignUpScreen()));
-                                  },
-                                  child: Text(
-                                    'Sign Up',
+                            Padding(
+                              padding: const EdgeInsets.only(bottom: 5.0),
+                              child: Row(
+                                mainAxisAlignment: MainAxisAlignment.center,
+                                children: [
+                                  Text(
+                                    "Don't have an account? ",
                                     style: TextStyle(
-                                      color: Colors.blueAccent,
-                                      fontWeight: FontWeight.bold,
+                                      color: Colors.black54,
                                       fontSize: textScaleFactor * 14,
                                     ),
                                   ),
-                                ),
-                              ],
+                                  GestureDetector(
+                                    onTap: () {
+                                      Navigator.push(
+                                          context,
+                                          MaterialPageRoute(
+                                              builder: (context) =>
+                                                  SignUpScreen()));
+                                    },
+                                    child: Text(
+                                      'Sign Up',
+                                      style: TextStyle(
+                                        color: Colors.blueAccent,
+                                        fontWeight: FontWeight.bold,
+                                        fontSize: textScaleFactor * 14,
+                                      ),
+                                    ),
+                                  ),
+                                ],
+                              ),
                             ),
                             SizedBox(height: srcheight * 0.01),
                           ],
