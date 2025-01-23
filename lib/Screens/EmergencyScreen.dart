@@ -49,18 +49,8 @@ class EmergencyAlertScreen extends StatelessWidget {
             SizedBox(height: srcHeight * 0.03),
 
             // Map Placeholder
-            Container(
-              height: srcHeight * 0.35,
-              decoration: BoxDecoration(
-                color: Colors.grey[300],
-                borderRadius: BorderRadius.circular(12.0),
-              ),
-              child: Center(
-                child: Text(
-                  "Map Placeholder",
-                  style: TextStyle(color: Colors.grey[700], fontSize: 18.0),
-                ),
-              ),
+            Center(
+              child: Image.asset('assets/images/map3.png'),
             ),
 
             SizedBox(height: srcHeight * 0.03),

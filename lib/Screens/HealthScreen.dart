@@ -169,7 +169,6 @@ class HealthScreen extends StatelessWidget {
     return ListTile(
       title: Text(name),
       subtitle: Text(time),
-      trailing: Icon(Icons.edit, color: Colors.blue),
     );
   }
 }

@@ -10,8 +10,8 @@ class DashboardScreen extends StatefulWidget {
 
 class _DashboardScreenState extends State<DashboardScreen> {
   List<Map<String, String>> medications = [
-    {"name": "Lisinopril", "time": "8:00 AM - 10mg"},
-    {"name": "Metformin", "time": "2:00 PM - 500mg"},
+    {"name": "Paracetamol", "time": "8:00 AM - 10mg"},
+    {"name": "Levocetirizine", "time": "2:00 PM - 500mg"},
     {"name": "Simvastatin", "time": "8:00 PM - 20mg"},
   ];
 
@@ -43,7 +43,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     crossAxisAlignment: CrossAxisAlignment.start,
                     children: [
                       Text(
-                        "Welcome back, kk",
+                        "Welcome back, John",
                         style: TextStyle(
                           fontSize: srcWidth * 0.05,
                           fontWeight: FontWeight.bold,
@@ -130,8 +130,10 @@ class _DashboardScreenState extends State<DashboardScreen> {
                     ),
                   ),
                   Padding(
-                    padding:  EdgeInsets.only(left: srcWidth*0.35),
-                    child: IconButton(onPressed: (){}, icon: Icon(Icons.add)),
+                    padding:  EdgeInsets.only(left: srcWidth*0.38),
+                    child: IconButton(onPressed: (){
+                      _showAddMedicationDialog(context);
+                    }, icon: Icon(Icons.add)),
                   )
                 ],
               ),
@@ -168,16 +170,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
                 elevation: 2.0,
                 child: Column(
                   children: [
-                    Container(
-                      height: srcHeight * 0.2,
-                      decoration: BoxDecoration(
-                        borderRadius: BorderRadius.vertical(top: Radius.circular(12.0)),
-                        color: Colors.grey[300],
-                      ),
-                      child: Center(
-                        child: Image.asset('assets/images/map.png',fit: BoxFit.contain,),
-                      ),
-                    ),
+                    Image.asset('assets/images/map.png',fit: BoxFit.contain,),
                     ListTile(
                       title: Text("Last updated: 2 mins ago"),
                       trailing: TextButton(
@@ -230,7 +223,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     return ListTile(
       title: Text(name),
       subtitle: Text(time),
-      trailing: Icon(Icons.edit, color: Colors.blue),
     );
   }
 

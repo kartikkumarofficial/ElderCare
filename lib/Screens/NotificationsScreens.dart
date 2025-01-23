@@ -95,7 +95,7 @@ class NotificationScreen extends StatelessWidget {
 
     return Scaffold(
       appBar: AppBar(
-        title: Text('Caregiver Notifications'),
+        title: Text('Notifications'),
         // backgroundColor: Colors.blueAccent,
       ),
       body: ListView.builder(
