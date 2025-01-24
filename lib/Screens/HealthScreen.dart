@@ -15,8 +15,6 @@ class HealthScreen extends StatelessWidget {
             crossAxisAlignment: CrossAxisAlignment.start,
             children: [
               SizedBox(height: srcHeight * 0.05),
-
-              // Header Row with Welcome Message
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -44,37 +42,33 @@ class HealthScreen extends StatelessWidget {
                 ],
               ),
               SizedBox(height: 16.0),
-
-              // Health Statistics Section with reduced space between containers
               Row(
-                mainAxisAlignment: MainAxisAlignment.center, // Center alignment
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   healthContainer(srcWidth, "Heart Rate", "75 BPM", Icons.favorite, Colors.red),
-                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05),
                   healthContainer(srcWidth, "Blood Pressure", "120/80", Icons.water, Colors.blue),
                 ],
               ),
-              const SizedBox(height: 8.0), // Reduced space
+              const SizedBox(height: 8.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center, // Center alignment
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   healthContainer(srcWidth, "Blood Sugar", "95 mg/dL", Icons.bloodtype, Colors.orange),
-                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05),
                   healthContainer(srcWidth, "Steps", "2,450", Icons.directions_walk, Colors.green),
                 ],
               ),
-              const SizedBox(height: 8.0), // Reduced space
+              const SizedBox(height: 8.0),
               Row(
-                mainAxisAlignment: MainAxisAlignment.center, // Center alignment
+                mainAxisAlignment: MainAxisAlignment.center,
                 children: [
                   healthContainer(srcWidth, "Cholesterol", "180 mg/dL", Icons.monitor_heart, Colors.purple),
-                  SizedBox(width: srcWidth * 0.05), // Reduced horizontal space
+                  SizedBox(width: srcWidth * 0.05),
                   healthContainer(srcWidth, "Temperature", "98.6°F", Icons.thermostat, Colors.blueGrey),
                 ],
               ),
               const SizedBox(height: 16.0),
-
-              // Today's Medications Section
               Text(
                 "Today's Medications",
                 style: TextStyle(
@@ -99,14 +93,12 @@ class HealthScreen extends StatelessWidget {
                 ),
               ),
               const SizedBox(height: 16.0),
-
-              // Add Medication Button
               Center(
                 child: ElevatedButton.icon(
                   onPressed: () {},
                   icon: Icon(Icons.add, color: Colors.white),
                   label: Padding(
-                    padding: const EdgeInsets.only(left: 5,right: 5),
+                    padding: const EdgeInsets.only(left: 5, right: 5),
                     child: Text(
                       "Add Reminder",
                       style: TextStyle(color: Colors.white),
@@ -130,7 +122,6 @@ class HealthScreen extends StatelessWidget {
     );
   }
 
-  // Health Vital Container
   Widget healthContainer(double srcWidth, String title, String value, IconData icon, Color color) {
     return Container(
       width: srcWidth * 0.4,
@@ -163,7 +154,6 @@ class HealthScreen extends StatelessWidget {
       ),
     );
   }
-
 
   Widget medicationTile(String name, String time) {
     return ListTile(

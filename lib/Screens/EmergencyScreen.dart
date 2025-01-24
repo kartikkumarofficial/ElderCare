@@ -48,14 +48,14 @@ class EmergencyAlertScreen extends StatelessWidget {
           children: [
             SizedBox(height: srcHeight * 0.03),
 
-            // Map Placeholder
+
             Center(
               child: Image.asset('assets/images/map3.png'),
             ),
 
             SizedBox(height: srcHeight * 0.03),
 
-            // Emergency Details
+
             Text(
               "Nearby Volunteers",
               style: TextStyle(
@@ -66,7 +66,7 @@ class EmergencyAlertScreen extends StatelessWidget {
             SizedBox(height: 12.0),
             Expanded(
               child: ListView.builder(
-                itemCount: 5, // Simulate 5 nearby volunteers
+                itemCount: 5,
                 itemBuilder: (context, index) {
                   return Card(
                     shape: RoundedRectangleBorder(
@@ -87,7 +87,7 @@ class EmergencyAlertScreen extends StatelessWidget {
               ),
             ),
 
-            // Send Signal Button
+
             SizedBox(
               width: double.infinity,
               child: ElevatedButton.icon(

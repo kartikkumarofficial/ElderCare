@@ -35,7 +35,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
             children: [
               SizedBox(height: srcHeight * 0.05),
 
-              // Welcome Header Row (Back to original)
+
               Row(
                 mainAxisAlignment: MainAxisAlignment.spaceBetween,
                 children: [
@@ -67,7 +67,8 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               SizedBox(height: 16.0),
 
-              // Emergency Button
+
+
               Center(
                 child: SizedBox(
                   width: srcWidth * 0.9,
@@ -93,7 +94,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // Health Overview Section
               Text(
                 "Health Overview",
                 style: TextStyle(
@@ -183,7 +183,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
               ),
               const SizedBox(height: 16.0),
 
-              // Upcoming Appointments Section
               Text(
                 "Upcoming Appointments",
                 style: TextStyle(
@@ -218,7 +217,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // Medication Tile
+
   Widget _medicationTile(BuildContext context, String name, String time) {
     return ListTile(
       title: Text(name),
@@ -226,7 +225,6 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // Show Dialog to add new medication
   void _showAddMedicationDialog(BuildContext context) {
     showDialog(
       context: context,
@@ -291,7 +289,7 @@ class _DashboardScreenState extends State<DashboardScreen> {
     );
   }
 
-  // Dummy Appointment Tile
+
   Widget appointmentTile(String title, String details) {
     return ListTile(
       title: Text(title),

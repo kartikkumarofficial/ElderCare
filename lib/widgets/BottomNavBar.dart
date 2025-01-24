@@ -25,7 +25,7 @@ class _BottomNavBarState extends State<BottomNavBar> {
       backgroundColor: Colors.grey[100],
       body: AnimatedSwitcher(
         duration: Duration(milliseconds: 300),
-        child: _screens[_selectedIndex], // Smoothly transitions between screens
+        child: _screens[_selectedIndex],
       ),
       bottomNavigationBar: Container(
         height: srcheight*0.1,
